@@ -16,6 +16,8 @@ using System.Threading;
 using Dalamud.Game.Text.SeStringHandling.Payloads;
 using Dalamud.Game.ClientState.Objects.Enums;
 using ObjectKind = Dalamud.Game.ClientState.Objects.Enums.ObjectKind;
+using Dalamud.Plugin.Services;
+using Dalamud.Game.ClientState.Conditions;
 
 namespace RoleplayingVoice {
     public partial class Plugin : IDalamudPlugin {
@@ -59,7 +61,7 @@ namespace RoleplayingVoice {
                 if (!string.IsNullOrEmpty(_lastEmoteAnimationUsed.Name.ToString())) {
                     Emote value = _lastEmoteAnimationUsed;
                     _lastEmoteAnimationUsed = new Emote();
-                    if (!Conditions.IsWatchingCutscene) {
+                    if (!_condition[ConditionFlag.WatchingCutscene]) {
                         _isAlreadyRunningEmote = true;
                         Task.Run(() => {
                             if (value.EmoteMode.Value.ConditionMode is not 3) {

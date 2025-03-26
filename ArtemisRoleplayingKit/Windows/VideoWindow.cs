@@ -1,4 +1,5 @@
-﻿using Dalamud.Interface.Internal;
+﻿using Dalamud.Game.ClientState.Conditions;
+using Dalamud.Interface.Internal;
 using Dalamud.Interface.Textures.TextureWraps;
 using Dalamud.Interface.Windowing;
 using Dalamud.Plugin;
@@ -34,6 +35,7 @@ namespace RoleplayingVoice {
         private IDalamudTextureWrap _frameToLoad;
         private byte[] _lastLoadedFrame;
         private bool taskAlreadyRunning;
+        private ICondition _condition;
 
         public VideoWindow(IDalamudPluginInterface pluginInterface, ITextureProvider textureProvider) :
             base("Video Window", ImGuiWindowFlags.NoTitleBar | ImGuiWindowFlags.NoBackground | ImGuiWindowFlags.NoScrollbar, false) {
@@ -51,7 +53,7 @@ namespace RoleplayingVoice {
         public MediaManager MediaManager { get => _mediaManager; set => _mediaManager = value; }
 
         public override async void Draw() {
-            if (IsOpen && !Conditions.IsInBetweenAreas && !Plugin.Disposed) {
+            if (IsOpen && !_condition[ConditionFlag.BetweenAreas] && !Plugin.Disposed) {
                 Size = new Vector2(ImGui.GetWindowSize().X, ImGui.GetWindowSize().X * 0.5625f);
                 SizeConstraints = new WindowSizeConstraints() { MaximumSize = ImGui.GetMainViewport().Size, MinimumSize = new Vector2(360, 480) };
                 if (_mediaManager != null && _mediaManager.LastFrame != null && _mediaManager.LastFrame.Length > 0) {

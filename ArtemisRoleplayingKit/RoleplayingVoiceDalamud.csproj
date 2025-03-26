@@ -1,7 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Dalamud.NET.SDK/12.0.2">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0-windows</TargetFramework>
+		<TargetFramework>net9.0-windows7.0</TargetFramework>
 		<LangVersion>11.0</LangVersion>
 		<Version>0.1.4.0</Version>
 		<Platforms>AnyCPU;x64</Platforms>
@@ -30,13 +30,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="DalamudPackager" Version="11.0.0" />
-		<PackageReference Include="Glamourer.Api" Version="2.2.0" />
+		<PackageReference Include="Glamourer.Api" Version="2.4.0" />
 		<PackageReference Include="NAudio" Version="2.2.1" />
 		<PackageReference Include="NAudio.Lame" Version="2.1.0" />
 		<PackageReference Include="NAudio.WinMM" Version="2.2.1" />
-		<PackageReference Include="Penumbra.Api" Version="5.3.0" />
-		<PackageReference Include="Penumbra.String" Version="1.0.4" />
+		<PackageReference Include="Penumbra.Api" Version="5.6.0" />
+		<PackageReference Include="Penumbra.String" Version="1.0.5" />
 		<PackageReference Include="SevenZipSharp.Interop" Version="19.1.0" />
 		<PackageReference Include="Sewer56.Update.Extractors.SevenZipSharp" Version="1.1.4" />
 	</ItemGroup>
@@ -47,38 +46,6 @@
 	    <ReferenceOutputAssembly>True</ReferenceOutputAssembly>
 	    <Private>True</Private>
 	  </ProjectReference>
-	</ItemGroup>
-
-	<ItemGroup>
-		<!--You may need to adjust these paths yourself. These point to a Dalamud assembly in AppData.-->
-		<Reference Include="Dalamud">
-			<HintPath>$(AppData)\XIVLauncher\addon\Hooks\dev\Dalamud.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="ImGui.NET">
-			<HintPath>$(AppData)\XIVLauncher\addon\Hooks\dev\ImGui.NET.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="ImGuiScene">
-			<HintPath>$(AppData)\XIVLauncher\addon\Hooks\dev\ImGuiScene.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="Lumina">
-			<HintPath>$(AppData)\XIVLauncher\addon\Hooks\dev\Lumina.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="Lumina.Excel">
-			<HintPath>$(AppData)\XIVLauncher\addon\Hooks\dev\Lumina.Excel.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="Newtonsoft.Json">
-			<HintPath>$(AppData)\XIVLauncher\addon\Hooks\dev\Newtonsoft.Json.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
-		<Reference Include="FFXIVClientStructs">
-			<HintPath>$(AppData)\XIVLauncher\addon\Hooks\dev\FFXIVClientStructs.dll</HintPath>
-			<Private>false</Private>
-		</Reference>
 	</ItemGroup>
 
 	<ItemGroup>

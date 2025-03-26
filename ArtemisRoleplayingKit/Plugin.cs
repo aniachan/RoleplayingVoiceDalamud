@@ -237,6 +237,7 @@ namespace RoleplayingVoice
         public IDataManager DataManager { get => _dataManager; set => _dataManager = value; }
 
         public IChatGui Chat => _chat;
+        public ICondition _condition;
 
         public Queue<string> FastMessageQueue { get => _fastMessageQueue; set => _fastMessageQueue = value; }
         public Queue<string> MessageQueue { get => _messageQueue; set => _messageQueue = value; }
@@ -275,8 +276,8 @@ namespace RoleplayingVoice
             IDataManager dataManager,
             IGameConfig gameConfig,
             IFramework framework,
-            IGameInteropProvider interopProvider,
             ICondition condition,
+            IGameInteropProvider interopProvider,
             IGameGui gameGui,
             IDragDropManager dragDrop,
             IPluginLog pluginLog,
@@ -320,6 +321,7 @@ namespace RoleplayingVoice
                 _animationCatalogue.Plugin = this;
                 _animationEmoteSelection.Plugin = this;
                 _targetManager = targetManager;
+                _condition = condition;
                 if (Window is not null) {
                     this.windowSystem.AddWindow(Window);
                 }
@@ -365,6 +367,7 @@ namespace RoleplayingVoice
                 _objectTableThreadUnsafe = objectTable;
                 _framework = framework;
                 _framework.Update += framework_Update;
+
                 NPCVoiceMapping.Initialize();
                 Task.Run(async () => {
                     _npcVoiceManager = new NPCVoiceManager(await NPCVoiceMapping.GetVoiceMappings(), await NPCVoiceMapping.GetCharacterToCacheType(),

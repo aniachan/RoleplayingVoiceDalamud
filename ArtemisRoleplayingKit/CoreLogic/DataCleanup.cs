@@ -1,6 +1,8 @@
-﻿using Dalamud.Game.ClientState.Objects.Types;
+﻿using Dalamud.Game.ClientState.Conditions;
+using Dalamud.Game.ClientState.Objects.Types;
 using Dalamud.Game.Config;
 using Dalamud.Plugin;
+using Dalamud.Plugin.Services;
 using FFXIVClientStructs.FFXIV.Client.Game;
 using System;
 using System.Collections.Generic;
@@ -206,7 +208,7 @@ namespace RoleplayingVoice {
         public void ResetTwitchValues() {
             Task.Run(async () => {
                 Thread.Sleep(1000);
-                while (Conditions.IsInBetweenAreas) {
+                while (_condition[ConditionFlag.BetweenAreas]) {
                     Thread.Sleep(500);
                 }
                 _lastStreamObject = null;
